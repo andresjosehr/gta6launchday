@@ -278,8 +278,9 @@ body::after {
         gap: 0.8rem;
     }
     .separator { font-size: 2.5rem; margin-bottom: 1.5rem; }
-    .digit { font-size: 3rem; }
-    .title-logo { max-width: 150px; }
+    .digit { font-size: 3.5rem; }
+    .title-logo { max-width: 150px; margin-bottom: 2.5rem; }
+    .tagline { font-size: 0.85rem; margin-top: -2rem; padding: 0 1.5rem; }
     .label { font-size: 0.7rem; letter-spacing: 0.15em; }
     .footer-text { font-size: 0.9rem; letter-spacing: 0.3em; }
 }
@@ -289,21 +290,23 @@ body::after {
         gap: 1.5rem;
         padding: 0.5rem;
     }
-    .countdown-grid { gap: 0.4rem; }
-    .digit { font-size: 2rem; }
-    .separator { font-size: 1.5rem; margin-bottom: 1rem; }
-    .title-logo { max-width: 100px; }
+    .countdown-grid { gap: 0.5rem; }
+    .digit { font-size: 2.5rem; }
+    .separator { font-size: 1.8rem; margin-bottom: 1.2rem; }
+    .title-logo { max-width: 120px; margin-bottom: 2rem; }
+    .tagline { font-size: 0.7rem; margin-top: -1.5rem; padding: 0 2rem; }
     .label { font-size: 0.5rem; letter-spacing: 0.1em; }
     .footer-text { font-size: 0.7rem; letter-spacing: 0.15em; }
     .time-unit { gap: 0.3rem; }
 }
 
 @media (max-width: 360px) {
-    .digit { font-size: 1.6rem; }
-    .separator { font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .digit { font-size: 2rem; }
+    .separator { font-size: 1.5rem; margin-bottom: 1rem; }
     .label { font-size: 0.45rem; }
-    .countdown-grid { gap: 0.3rem; }
-    .title-logo { max-width: 80px; }
+    .countdown-grid { gap: 0.4rem; }
+    .title-logo { max-width: 100px; margin-bottom: 1.8rem; }
+    .tagline { font-size: 0.6rem; margin-top: -1.2rem; padding: 0 1.5rem; }
     .footer-text { font-size: 0.6rem; letter-spacing: 0.1em; }
 }
 
