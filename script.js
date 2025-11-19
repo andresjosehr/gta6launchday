@@ -2,10 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set target date to November 19, 2026
     const targetDate = new Date('2026-11-19T00:00:00').getTime();
 
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
+    // Get individual digit elements
+    const daysHundreds = document.getElementById('days-hundreds');
+    const daysTens = document.getElementById('days-tens');
+    const daysUnits = document.getElementById('days-units');
+    const hoursTens = document.getElementById('hours-tens');
+    const hoursUnits = document.getElementById('hours-units');
+    const minutesTens = document.getElementById('minutes-tens');
+    const minutesUnits = document.getElementById('minutes-units');
+    const secondsTens = document.getElementById('seconds-tens');
+    const secondsUnits = document.getElementById('seconds-units');
+
+    function setDigits(tens, units, value) {
+        const str = value.toString().padStart(2, '0');
+        tens.innerText = str[0];
+        units.innerText = str[1];
+    }
+
+    function setDaysDigits(hundreds, tens, units, value) {
+        const str = value.toString().padStart(3, '0');
+        hundreds.innerText = str[0];
+        tens.innerText = str[1];
+        units.innerText = str[2];
+    }
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -13,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (distance < 0) {
             // Timer expired
-            daysEl.innerText = "00";
-            hoursEl.innerText = "00";
-            minutesEl.innerText = "00";
-            secondsEl.innerText = "00";
+            setDaysDigits(daysHundreds, daysTens, daysUnits, 0);
+            setDigits(hoursTens, hoursUnits, 0);
+            setDigits(minutesTens, minutesUnits, 0);
+            setDigits(secondsTens, secondsUnits, 0);
             return;
         }
 
@@ -25,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        daysEl.innerText = days.toString().padStart(2, '0');
-        hoursEl.innerText = hours.toString().padStart(2, '0');
-        minutesEl.innerText = minutes.toString().padStart(2, '0');
-        secondsEl.innerText = seconds.toString().padStart(2, '0');
+        setDaysDigits(daysHundreds, daysTens, daysUnits, days);
+        setDigits(hoursTens, hoursUnits, hours);
+        setDigits(minutesTens, minutesUnits, minutes);
+        setDigits(secondsTens, secondsUnits, seconds);
 
         // Progress Bar Logic
         const startDate = new Date('2025-11-06T00:00:00').getTime();

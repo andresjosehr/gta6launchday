@@ -178,6 +178,10 @@ body::after {
 .time-unit:nth-child(5) { animation-delay: 0.9s; }
 .time-unit:nth-child(7) { animation-delay: 1.1s; }
 
+.digit-pair {
+    display: flex;
+}
+
 .digit {
     font-size: 10rem;
     font-weight: 900;
@@ -186,6 +190,10 @@ body::after {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    /* Fixed width for each digit */
+    width: 1ch;
+    text-align: center;
+    display: inline-block;
 }
 
 .label {
