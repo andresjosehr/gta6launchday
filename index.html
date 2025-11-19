@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GTA VI Countdown</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="assets/fonts/GTA Art Deco - Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/GTA Art Deco - Medium.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js"></script>
 </head>
 <body>
     <main class="container">
         <div class="content-wrapper">
-            <img src="assets/images/vi.webp" alt="GTA VI" class="title-logo">
+            <img src="assets/images/vi.webp" alt="GTA VI" class="title-logo" fetchpriority="high">
             <div class="countdown-grid">
                 <div class="time-unit">
                     <span class="digit" id="days">00</span>

@@ -2,12 +2,14 @@
     font-family: 'GTA Art Deco';
     src: url('assets/fonts/GTA Art Deco - Regular.ttf') format('truetype');
     font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'GTA Art Deco';
     src: url('assets/fonts/GTA Art Deco - Medium.ttf') format('truetype');
     font-weight: 500;
+    font-display: swap;
 }
 
 :root {
