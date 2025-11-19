@@ -1,0 +1,6 @@
+# robots.txt for GTA VI Countdown
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gta6launchday.com/sitemap.xml

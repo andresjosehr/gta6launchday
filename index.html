@@ -1,19 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTA VI Countdown</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- SEO Meta Tags -->
+    <title>GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026</title>
+    <meta name="description" content="Cuenta regresiva para GTA VI. Descubre cuántos días, horas y minutos faltan para el lanzamiento de Grand Theft Auto 6 el 19 de noviembre de 2026.">
+    <meta name="keywords" content="GTA VI, GTA 6, countdown, cuenta regresiva, release date, fecha lanzamiento, Rockstar Games, Grand Theft Auto 6, GTA VI release">
+    <meta name="author" content="GTA VI Countdown">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gta6launchday.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gta6launchday.com/">
+    <meta property="og:title" content="GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026">
+    <meta property="og:description" content="¿Cuánto falta para GTA VI? Sigue la cuenta regresiva en tiempo real hasta el 19 de noviembre de 2026.">
+    <meta property="og:image" content="https://gta6launchday.com/assets/images/Jason_and_Lucia_02_landscape.webp">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="GTA VI Countdown">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://gta6launchday.com/">
+    <meta name="twitter:title" content="GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026">
+    <meta name="twitter:description" content="¿Cuánto falta para GTA VI? Sigue la cuenta regresiva en tiempo real hasta el 19 de noviembre de 2026.">
+    <meta name="twitter:image" content="https://gta6launchday.com/assets/images/Jason_and_Lucia_02_landscape.webp">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="/assets/images/vi.webp">
+    <link rel="apple-touch-icon" href="/assets/images/vi.webp">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "GTA VI Release - Lanzamiento de Grand Theft Auto VI",
+        "description": "Fecha de lanzamiento oficial de Grand Theft Auto VI para PlayStation 5 y Xbox Series X|S",
+        "startDate": "2026-11-19",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+            "@type": "VirtualLocation",
+            "url": "https://gta6launchday.com/"
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "Rockstar Games",
+            "url": "https://www.rockstargames.com/"
+        },
+        "image": "https://gta6launchday.com/assets/images/Jason_and_Lucia_02_landscape.webp"
+    }
+    </script>
+
+    <!-- Preload Fonts -->
+    <link rel="preload" href="assets/fonts/GTA Art Deco - Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/GTA Art Deco - Medium.ttf" as="font" type="font/ttf" crossorigin>
+
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js"></script>
 </head>
 <body>
     <main class="container">
         <div class="content-wrapper">
-            <img src="assets/images/vi.webp" alt="GTA VI" class="title-logo">
+            <h1 class="visually-hidden">GTA VI Countdown - Cuenta Regresiva para Grand Theft Auto 6</h1>
+            <img src="assets/images/vi.webp" alt="Logo GTA VI - Grand Theft Auto 6" class="title-logo" fetchpriority="high">
+            <p class="tagline">Cuenta regresiva para el lanzamiento</p>
             <div class="countdown-grid">
                 <div class="time-unit">
                     <span class="digit" id="days">00</span>

@@ -128,12 +128,36 @@ body::after {
     text-align: center;
 }
 
+/* Visually hidden but accessible for SEO */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .title-logo {
     max-width: 200px;
     width: 80%;
     height: auto;
     margin-bottom: 1.5rem;
     animation: scaleIn 0.8s ease-out 0.3s both;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    opacity: 0.9;
+    margin-top: -3rem;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
 }
 
 .countdown-grid {
