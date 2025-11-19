@@ -1,0 +1,202 @@
+@font-face {
+    font-family: 'GTA Art Deco';
+    src: url('assets/fonts/GTA Art Deco - Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'GTA Art Deco';
+    src: url('assets/fonts/GTA Art Deco - Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+:root {
+    --bg-obsidian: #000000;
+    --accent-gold: #fff9cb;
+    --accent-pink: #ffb0c4;
+    --accent-purple: #5c1663;
+    --text-primary: #ffffff;
+    --font-gta: 'GTA Art Deco', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-obsidian);
+    color: var(--text-primary);
+    font-family: var(--font-gta);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background image with blur and opacity */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/images/Jason_and_Lucia_02_landscape.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Dark overlay */
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    text-align: center;
+}
+
+.title-logo {
+    max-width: 200px;
+    width: 80%;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.countdown-grid {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.digit {
+    font-size: 10rem;
+    font-weight: 900;
+    line-height: 1;
+    background: radial-gradient(circle at 50% 40vh, #ffd27b 0, #df3a93 55vh, #5c1663 100vh);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.label {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--accent-gold);
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+.separator {
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--accent-pink);
+    margin-bottom: 3rem; /* Align with digits */
+}
+
+.footer-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1em;
+    color: var(--accent-gold);
+    margin-top: 2rem;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 600px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--accent-pink);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    box-shadow: 0 0 15px rgba(223, 58, 147, 0.3);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink), var(--accent-gold));
+    width: 0%;
+    transition: width 0.5s ease-out;
+    box-shadow: 0 0 20px rgba(255, 210, 123, 0.5);
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+@media (max-width: 1024px) {
+    .digit { font-size: 6rem; }
+    .separator { font-size: 4rem; }
+    .countdown-grid { gap: 1.5rem; }
+    .title-logo { max-width: 180px; }
+    .label { font-size: 1.2rem; }
+    .footer-text { font-size: 1rem; letter-spacing: 0.5em; }
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        gap: 2rem;
+        padding: 1rem;
+    }
+    .countdown-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .separator { display: none; }
+    .digit { font-size: 5rem; }
+    .title-logo { max-width: 150px; }
+    .label { font-size: 1rem; letter-spacing: 0.2em; }
+    .footer-text { font-size: 0.9rem; letter-spacing: 0.3em; }
+}
+
+@media (max-width: 480px) {
+    .digit { font-size: 3.5rem; }
+    .title-logo { max-width: 120px; }
+    .label { font-size: 0.8rem; }
+    .footer-text { font-size: 0.8rem; letter-spacing: 0.2em; }
+    .countdown-grid { gap: 1.5rem; }
+}

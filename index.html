@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA VI Countdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <main class="container">
+        <div class="content-wrapper">
+            <img src="assets/images/vi.webp" alt="GTA VI" class="title-logo">
+            <div class="countdown-grid">
+                <div class="time-unit">
+                    <span class="digit" id="days">00</span>
+                    <span class="label">DAYS</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span class="digit" id="hours">00</span>
+                    <span class="label">HOURS</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span class="digit" id="minutes">00</span>
+                    <span class="label">MINUTES</span>
+                </div>
+                <div class="separator">:</div>
+                <div class="time-unit">
+                    <span class="digit" id="seconds">00</span>
+                    <span class="label">SECONDS</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">0%</div>
+            </div>
+            <div class="footer-text">NOVEMBER 19, 2026</div>
+        </div>
+    </main>
+</body>
+</html>
