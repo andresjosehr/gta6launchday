@@ -275,20 +275,199 @@ body::after {
         padding: 1rem;
     }
     .countdown-grid {
-        flex-direction: column;
-        gap: 2rem;
+        gap: 0.8rem;
     }
-    .separator { display: none; }
-    .digit { font-size: 5rem; }
+    .separator { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .digit { font-size: 3rem; }
     .title-logo { max-width: 150px; }
-    .label { font-size: 1rem; letter-spacing: 0.2em; }
+    .label { font-size: 0.7rem; letter-spacing: 0.15em; }
     .footer-text { font-size: 0.9rem; letter-spacing: 0.3em; }
 }
 
 @media (max-width: 480px) {
-    .digit { font-size: 3.5rem; }
-    .title-logo { max-width: 120px; }
-    .label { font-size: 0.8rem; }
-    .footer-text { font-size: 0.8rem; letter-spacing: 0.2em; }
-    .countdown-grid { gap: 1.5rem; }
+    .content-wrapper {
+        gap: 1.5rem;
+        padding: 0.5rem;
+    }
+    .countdown-grid { gap: 0.4rem; }
+    .digit { font-size: 2rem; }
+    .separator { font-size: 1.5rem; margin-bottom: 1rem; }
+    .title-logo { max-width: 100px; }
+    .label { font-size: 0.5rem; letter-spacing: 0.1em; }
+    .footer-text { font-size: 0.7rem; letter-spacing: 0.15em; }
+    .time-unit { gap: 0.3rem; }
+}
+
+@media (max-width: 360px) {
+    .digit { font-size: 1.6rem; }
+    .separator { font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .label { font-size: 0.45rem; }
+    .countdown-grid { gap: 0.3rem; }
+    .title-logo { max-width: 80px; }
+    .footer-text { font-size: 0.6rem; letter-spacing: 0.1em; }
+}
+
+/* Language Selector */
+.language-selector {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--accent-gold);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-gta);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 249, 203, 0.1);
+    border-color: var(--accent-pink);
+}
+
+.current-flag {
+    font-size: 1.2rem;
+}
+
+.current-lang {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.chevron {
+    transition: transform 0.3s ease;
+    color: var(--accent-gold);
+}
+
+.lang-dropdown.open + .lang-toggle .chevron,
+.lang-toggle:focus + .lang-dropdown.open ~ .chevron {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 180px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid var(--accent-gold);
+    border-radius: 8px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.lang-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-gta);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.lang-option:hover {
+    background: rgba(255, 249, 203, 0.15);
+}
+
+.lang-option:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 249, 203, 0.1);
+}
+
+.lang-flag {
+    font-size: 1.2rem;
+}
+
+.lang-name {
+    flex: 1;
+}
+
+/* RTL Support */
+html[dir="rtl"] .language-selector {
+    right: auto;
+    left: 1.5rem;
+}
+
+html[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
+html[dir="rtl"] .footer-text {
+    letter-spacing: 0.3em;
+}
+
+/* Scrollbar for dropdown */
+.lang-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lang-dropdown::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.lang-dropdown::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .language-selector {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .lang-toggle {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .current-flag {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .language-selector {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .lang-toggle {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .current-lang {
+        display: none;
+    }
 }

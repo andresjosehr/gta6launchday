@@ -1,6 +1,94 @@
+import { translations, detectLanguage } from './translations.js';
+
 document.addEventListener('DOMContentLoaded', () => {
     // Set target date to November 19, 2026
     const targetDate = new Date('2026-11-19T00:00:00').getTime();
+
+    // Language management
+    let currentLanguage = detectLanguage();
+
+    function updateLanguage(lang) {
+        currentLanguage = lang;
+        localStorage.setItem('gta6-language', lang);
+
+        const t = translations[lang];
+
+        // Update all translatable elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) {
+                el.textContent = t[key];
+            }
+        });
+
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+
+        // Handle RTL languages
+        if (t.rtl) {
+            document.documentElement.dir = 'rtl';
+        } else {
+            document.documentElement.dir = 'ltr';
+        }
+
+        // Update meta tags
+        document.title = t.meta.title;
+        document.querySelector('meta[name="description"]')?.setAttribute('content', t.meta.description);
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', t.meta.title);
+        document.querySelector('meta[property="og:description"]')?.setAttribute('content', t.meta.ogDescription);
+        document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', t.meta.title);
+        document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', t.meta.ogDescription);
+
+        // Update language selector display
+        const currentFlag = document.getElementById('current-flag');
+        const currentLang = document.getElementById('current-lang');
+        if (currentFlag) currentFlag.textContent = t.flag;
+        if (currentLang) currentLang.textContent = lang.toUpperCase();
+
+        // Close dropdown
+        const dropdown = document.getElementById('lang-dropdown');
+        if (dropdown) dropdown.classList.remove('open');
+    }
+
+    function initLanguageSelector() {
+        const toggle = document.getElementById('lang-toggle');
+        const dropdown = document.getElementById('lang-dropdown');
+
+        if (!toggle || !dropdown) return;
+
+        // Populate dropdown
+        dropdown.innerHTML = Object.entries(translations).map(([code, lang]) => `
+            <button class="lang-option" data-lang="${code}">
+                <span class="lang-flag">${lang.flag}</span>
+                <span class="lang-name">${lang.name}</span>
+            </button>
+        `).join('');
+
+        // Toggle dropdown
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+
+        // Handle language selection
+        dropdown.addEventListener('click', (e) => {
+            const option = e.target.closest('.lang-option');
+            if (option) {
+                const lang = option.getAttribute('data-lang');
+                updateLanguage(lang);
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            dropdown.classList.remove('open');
+        });
+
+        // Initialize with detected language
+        updateLanguage(currentLanguage);
+    }
+
+    initLanguageSelector();
 
     // Get individual digit elements
     const daysHundreds = document.getElementById('days-hundreds');

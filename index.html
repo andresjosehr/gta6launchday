@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-88Z7S4QW4X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-88Z7S4QW4X');
+    </script>
+
     <!-- SEO Meta Tags -->
-    <title>GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026</title>
-    <meta name="description" content="Cuenta regresiva para GTA VI. Descubre cuántos días, horas y minutos faltan para el lanzamiento de Grand Theft Auto 6 el 19 de noviembre de 2026.">
+    <title>GTA VI Countdown | Release Date 2026</title>
+    <meta name="description" content="GTA VI countdown. Find out how many days, hours and minutes until the Grand Theft Auto 6 release on November 19, 2026.">
     <meta name="keywords" content="GTA VI, GTA 6, countdown, cuenta regresiva, release date, fecha lanzamiento, Rockstar Games, Grand Theft Auto 6, GTA VI release">
     <meta name="author" content="GTA VI Countdown">
     <meta name="robots" content="index, follow">
@@ -15,17 +24,17 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gta6launchday.com/">
-    <meta property="og:title" content="GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026">
-    <meta property="og:description" content="¿Cuánto falta para GTA VI? Sigue la cuenta regresiva en tiempo real hasta el 19 de noviembre de 2026.">
+    <meta property="og:title" content="GTA VI Countdown | Release Date 2026">
+    <meta property="og:description" content="How long until GTA VI? Follow the real-time countdown to November 19, 2026.">
     <meta property="og:image" content="https://gta6launchday.com/assets/images/Jason_and_Lucia_02_landscape.webp">
-    <meta property="og:locale" content="es_ES">
+    <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="GTA VI Countdown">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://gta6launchday.com/">
-    <meta name="twitter:title" content="GTA VI Countdown | Cuenta Regresiva Lanzamiento 2026">
-    <meta name="twitter:description" content="¿Cuánto falta para GTA VI? Sigue la cuenta regresiva en tiempo real hasta el 19 de noviembre de 2026.">
+    <meta name="twitter:title" content="GTA VI Countdown | Release Date 2026">
+    <meta name="twitter:description" content="How long until GTA VI? Follow the real-time countdown to November 19, 2026.">
     <meta name="twitter:image" content="https://gta6launchday.com/assets/images/Jason_and_Lucia_02_landscape.webp">
 
     <!-- Favicon -->
@@ -38,8 +47,8 @@
     {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": "GTA VI Release - Lanzamiento de Grand Theft Auto VI",
-        "description": "Fecha de lanzamiento oficial de Grand Theft Auto VI para PlayStation 5 y Xbox Series X|S",
+        "name": "GTA VI Release - Grand Theft Auto VI Launch",
+        "description": "Official release date of Grand Theft Auto VI for PlayStation 5 and Xbox Series X|S",
         "startDate": "2026-11-19",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
@@ -64,11 +73,23 @@
     <script type="module" src="script.js"></script>
 </head>
 <body>
+    <div class="language-selector">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Select language">
+            <span class="current-flag" id="current-flag">🇺🇸</span>
+            <span class="current-lang" id="current-lang">EN</span>
+            <svg class="chevron" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+            <!-- Languages will be populated by JavaScript -->
+        </div>
+    </div>
     <main class="container">
         <div class="content-wrapper">
             <h1 class="visually-hidden">GTA VI Countdown - Cuenta Regresiva para Grand Theft Auto 6</h1>
             <img src="assets/images/vi.webp" alt="Logo GTA VI - Grand Theft Auto 6" class="title-logo" fetchpriority="high">
-            <p class="tagline">Cuenta regresiva para el lanzamiento</p>
+            <p class="tagline" data-i18n="tagline">Countdown to launch</p>
             <div class="countdown-grid">
                 <div class="time-unit">
                     <div class="digit-pair">
@@ -76,7 +97,7 @@
                         <span class="digit" id="days-tens">0</span>
                         <span class="digit" id="days-units">0</span>
                     </div>
-                    <span class="label">DAYS</span>
+                    <span class="label" data-i18n="days">DAYS</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-unit">
@@ -84,7 +105,7 @@
                         <span class="digit" id="hours-tens">0</span>
                         <span class="digit" id="hours-units">0</span>
                     </div>
-                    <span class="label">HOURS</span>
+                    <span class="label" data-i18n="hours">HOURS</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-unit">
@@ -92,7 +113,7 @@
                         <span class="digit" id="minutes-tens">0</span>
                         <span class="digit" id="minutes-units">0</span>
                     </div>
-                    <span class="label">MINUTES</span>
+                    <span class="label" data-i18n="minutes">MINUTES</span>
                 </div>
                 <div class="separator">:</div>
                 <div class="time-unit">
@@ -100,14 +121,14 @@
                         <span class="digit" id="seconds-tens">0</span>
                         <span class="digit" id="seconds-units">0</span>
                     </div>
-                    <span class="label">SECONDS</span>
+                    <span class="label" data-i18n="seconds">SECONDS</span>
                 </div>
             </div>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
                 <div class="progress-text" id="progress-text">0%</div>
             </div>
-            <div class="footer-text">NOVEMBER 19, 2026</div>
+            <div class="footer-text" data-i18n="releaseDate">NOVEMBER 19, 2026</div>
         </div>
     </main>
 </body>
