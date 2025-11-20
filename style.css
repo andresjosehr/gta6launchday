@@ -474,3 +474,24 @@ html[dir="rtl"] .footer-text {
         display: none;
     }
 }
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 1rem;
+    animation: fadeInUp 0.8s ease-out 1.7s both;
+}
+
+footer a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+}
+
+footer a:hover {
+    color: var(--accent-pink);
+}
