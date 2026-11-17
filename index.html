@@ -131,6 +131,26 @@
                 <div class="progress-bar" id="progress-bar"></div>
                 <div class="progress-text" id="progress-text">0%</div>
             </div>
+            <div class="actions">
+                <button type="button" class="action-btn" id="notify-btn" aria-pressed="false">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span id="notify-label" data-i18n="notifyMe">Notify me at launch</span>
+                </button>
+                <button type="button" class="action-btn" id="trailers-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span data-i18n="watchTrailers">Watch trailers</span>
+                </button>
+                <a class="action-btn" id="rockstar-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/>
+                    </svg>
+                    <span data-i18n="rockstarSite">Rockstar Games</span>
+                </a>
+            </div>
             <div class="footer-text" data-i18n="releaseDate">NOVEMBER 19, 2026</div>
             <footer>
                 <p><a href="https://github.com/andresjosehr/gta6launchday" target="_blank">
@@ -142,5 +162,15 @@
             </footer>
         </div>
     </main>
+    <dialog class="trailer-modal" id="trailer-modal" aria-labelledby="trailer-modal-title">
+        <div class="trailer-modal-header">
+            <h2 id="trailer-modal-title" data-i18n="trailersTitle">Official trailers</h2>
+            <button type="button" class="trailer-close" id="trailer-close" aria-label="Close" data-i18n-aria="close">&times;</button>
+        </div>
+        <div class="trailer-tabs" id="trailer-tabs" role="tablist"></div>
+        <div class="trailer-frame">
+            <iframe id="trailer-iframe" title="GTA VI trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </dialog>
 </body>
 </html>

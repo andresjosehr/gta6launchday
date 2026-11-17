@@ -1,4 +1,5 @@
 import { translations, detectLanguage } from './translations.js';
+import { createLaunchNotifier, createTrailerModal } from './features.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Zona horaria: la del navegador por defecto, o la elegida en el selector
@@ -89,12 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language management
     let currentLanguage = detectLanguage();
+    // Active texts, falling back to English for any missing key
+    const getTexts = () => ({ ...translations.en, ...translations[currentLanguage] });
+    let notifier = null;
+    let trailerModal = null;
 
     function updateLanguage(lang) {
         currentLanguage = lang;
         localStorage.setItem('gta6-language', lang);
 
-        const t = translations[lang];
+        const t = getTexts();
 
         // Update all translatable elements
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -127,6 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentLang = document.getElementById('current-lang');
         if (currentFlag) currentFlag.textContent = t.flag;
         if (currentLang) currentLang.textContent = lang.toUpperCase();
+
+        // Refresh texts rendered by the extra features
+        notifier?.render();
+        trailerModal?.render();
 
         // Close dropdown
         const dropdown = document.getElementById('lang-dropdown');
@@ -172,6 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initLanguageSelector();
+    notifier = createLaunchNotifier(getTexts);
+    trailerModal = createTrailerModal(getTexts);
 
     // Get individual digit elements
     const daysHundreds = document.getElementById('days-hundreds');
@@ -214,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setDigits(hoursTens, hoursUnits, 0);
             setDigits(minutesTens, minutesUnits, 0);
             setDigits(secondsTens, secondsUnits, 0);
+            notifier?.check(targetDate, now);
             return;
         }
 

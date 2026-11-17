@@ -8,6 +8,10 @@ Contador que muestra el tiempo restante hasta el lanzamiento de GTA VI el 19 de 
 - Barra de progreso mostrando el tiempo transcurrido desde el anuncio
 - Diseño responsive para todos los dispositivos
 - Estilo temático de GTA con fuentes personalizadas
+- Alerta en el navegador (Notification API) cuando termina la cuenta regresiva
+  - Requiere tener la página abierta (en cualquier pestaña); se dispara una sola vez
+- Modal con los tráilers oficiales de GTA VI (YouTube, modo privacidad mejorada)
+- Enlace directo a la página oficial de Rockstar Games
 
 ## Tecnologías
 
@@ -48,6 +52,8 @@ gta6counter/
 ├── index.html          # Archivo HTML principal
 ├── style.css           # Estilos
 ├── script.js           # Lógica del contador
+├── features.js         # Alerta de lanzamiento y modal de tráilers
+├── translations.js     # Textos traducidos (10 idiomas)
 ├── vite.config.js      # Configuración de Vite
 └── package.json        # Dependencias y scripts
 ```
