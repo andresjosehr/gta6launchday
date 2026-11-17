@@ -322,8 +322,14 @@ body::after {
     gap: 0.5rem;
 }
 
+.tz-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0 -1rem;
+}
+
 .tz-select {
-    max-width: 220px;
+    max-width: 260px;
     padding: 0.6rem 2rem 0.6rem 1rem;
     background: rgba(0, 0, 0, 0.7) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5L6 8L9.5 4.5' stroke='%23fff9cb' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 0.8rem center;
     border: 1px solid var(--accent-gold);

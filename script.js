@@ -198,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ocultar ceros a la izquierda (siempre se muestra al menos una cifra)
         hundreds.style.display = value >= 100 ? '' : 'none';
         tens.style.display = value >= 10 ? '' : 'none';
+        // Con 0 días se oculta la columna de días completa
+        const hide = value === 0 ? 'none' : '';
+        document.getElementById('days-unit').style.display = hide;
+        document.getElementById('days-separator').style.display = hide;
     }
 
     function updateCountdown() {

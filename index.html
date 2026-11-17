@@ -74,7 +74,6 @@
 </head>
 <body>
     <div class="language-selector">
-        <select class="tz-select" id="tz-select" aria-label="Time zone"></select>
         <button class="lang-toggle" id="lang-toggle" aria-label="Select language">
             <span class="current-flag" id="current-flag">🇺🇸</span>
             <span class="current-lang" id="current-lang">EN</span>
@@ -92,7 +91,7 @@
             <img src="assets/images/vi.webp" alt="Logo GTA VI - Grand Theft Auto 6" class="title-logo" fetchpriority="high">
             <p class="tagline" data-i18n="tagline">Countdown to launch</p>
             <div class="countdown-grid">
-                <div class="time-unit">
+                <div class="time-unit" id="days-unit">
                     <div class="digit-pair">
                         <span class="digit" id="days-hundreds">0</span>
                         <span class="digit" id="days-tens">0</span>
@@ -100,7 +99,7 @@
                     </div>
                     <span class="label" data-i18n="days">DAYS</span>
                 </div>
-                <div class="separator">:</div>
+                <div class="separator" id="days-separator">:</div>
                 <div class="time-unit">
                     <div class="digit-pair">
                         <span class="digit" id="hours-tens">0</span>
@@ -124,6 +123,9 @@
                     </div>
                     <span class="label" data-i18n="seconds">SECONDS</span>
                 </div>
+            </div>
+            <div class="tz-wrapper">
+                <select class="tz-select" id="tz-select" aria-label="Time zone"></select>
             </div>
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
