@@ -2,6 +2,7 @@
 
 const NOTIFY_KEY = 'gta6-notify';
 const NOTIFIED_KEY = 'gta6-notified';
+const LAUNCH_ID = '2026-11-19';
 
 export const TRAILERS = [
     { id: 'QdBZY2fkU-0', key: 'trailer1' },
@@ -71,9 +72,10 @@ export function createLaunchNotifier(getTexts) {
     function check(targetDate, now = Date.now()) {
         if (now < targetDate) return false;
         if (!supported || permission() !== 'granted' || !isSubscribed()) return false;
-        if (storageGet(NOTIFIED_KEY) === String(targetDate)) return false;
+        // Keyed on the launch itself, not on the zoned timestamp, so changing
+        // the time zone after the alert never fires it a second time.
+        if (storageGet(NOTIFIED_KEY) === LAUNCH_ID) return false;
 
-        storageSet(NOTIFIED_KEY, String(targetDate));
         const t = getTexts();
         try {
             const notification = new Notification(t.notificationTitle, {
@@ -87,8 +89,11 @@ export function createLaunchNotifier(getTexts) {
             };
         } catch {
             // Some mobile browsers only allow notifications from a service worker.
+            // Not marked as sent, so it can be retried on the next tick.
             return false;
         }
+        // Only mark as sent once the notification was actually created
+        storageSet(NOTIFIED_KEY, LAUNCH_ID);
         return true;
     }
 
