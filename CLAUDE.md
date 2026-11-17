@@ -23,6 +23,7 @@ This is a simple static website countdown timer for GTA VI release (November 19,
 ### Key Files
 - `index.html` - Entry point, loads script as ES module
 - `script.js` - Countdown logic with setInterval, updates DOM every second
+- `features.js` - Launch browser notification (Notification API) and trailers modal (YouTube embeds)
 - `style.css` - All styles including animations, responsive breakpoints, and custom GTA Art Deco fonts
 - `vite.config.js` - Vite configuration (esbuild minification, dev server on port 3000)
 
