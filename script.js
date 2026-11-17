@@ -1,8 +1,91 @@
 import { translations, detectLanguage } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Set target date to November 19, 2026
-    const targetDate = new Date('2026-11-19T00:00:00').getTime();
+    // Zona horaria: la del navegador por defecto, o la elegida en el selector
+    const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+    function isValidTimeZone(tz) {
+        try {
+            new Intl.DateTimeFormat('en-US', { timeZone: tz });
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    // Diferencia (ms) entre la hora local de `tz` y UTC en el instante `timestamp`
+    function getTimeZoneOffset(tz, timestamp) {
+        const parts = {};
+        new Intl.DateTimeFormat('en-US', {
+            timeZone: tz, hourCycle: 'h23',
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit', second: '2-digit'
+        }).formatToParts(new Date(timestamp)).forEach(({ type, value }) => { parts[type] = value; });
+        const asUTC = Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second);
+        return asUTC - Math.floor(timestamp / 1000) * 1000;
+    }
+
+    // Instante UTC que corresponde a esa fecha/hora local en `tz`
+    function zonedTime(tz, year, month, day) {
+        const guess = Date.UTC(year, month, day);
+        let result = guess - getTimeZoneOffset(tz, guess);
+        result = guess - getTimeZoneOffset(tz, result);
+        return result;
+    }
+
+    let savedTimeZone = null;
+    try { savedTimeZone = localStorage.getItem('gta6-timezone'); } catch {}
+    let currentTimeZone = savedTimeZone && isValidTimeZone(savedTimeZone) ? savedTimeZone : browserTimeZone;
+
+    // Fecha objetivo: 19 de noviembre de 2026 a las 00:00 en la zona horaria seleccionada
+    let targetDate;
+    let startDate;
+    function computeDates() {
+        targetDate = zonedTime(currentTimeZone, 2026, 10, 19);
+        startDate = zonedTime(currentTimeZone, 2025, 10, 6);
+    }
+    computeDates();
+
+    function formatOffset(tz) {
+        const minutes = Math.round(getTimeZoneOffset(tz, Date.now()) / 60000);
+        const sign = minutes < 0 ? '-' : '+';
+        const abs = Math.abs(minutes);
+        const h = Math.floor(abs / 60);
+        const m = abs % 60;
+        return `GMT${sign}${h}${m ? ':' + String(m).padStart(2, '0') : ''}`;
+    }
+
+    function initTimeZoneSelector() {
+        const select = document.getElementById('tz-select');
+        if (!select) return;
+
+        let zones = [];
+        try { zones = Intl.supportedValuesOf('timeZone'); } catch {}
+        zones = Array.from(new Set([...zones, browserTimeZone, currentTimeZone, 'UTC']));
+
+        const groups = {};
+        zones.forEach(tz => {
+            const slash = tz.indexOf('/');
+            const region = slash === -1 ? 'Other' : tz.slice(0, slash);
+            const city = (slash === -1 ? tz : tz.slice(slash + 1)).replace(/_/g, ' ').replace(/\//g, ' / ');
+            (groups[region] ||= []).push({ tz, label: `${city} (${formatOffset(tz)})` });
+        });
+
+        select.innerHTML = Object.keys(groups).sort().map(region => `
+            <optgroup label="${region}">
+                ${groups[region].sort((a, b) => a.label.localeCompare(b.label))
+                    .map(({ tz, label }) => `<option value="${tz}">${label}</option>`).join('')}
+            </optgroup>
+        `).join('');
+        select.value = currentTimeZone;
+
+        select.addEventListener('change', () => {
+            currentTimeZone = select.value;
+            try { localStorage.setItem('gta6-timezone', currentTimeZone); } catch {}
+            computeDates();
+            updateCountdown();
+        });
+    }
 
     // Language management
     let currentLanguage = detectLanguage();
@@ -112,6 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hundreds.innerText = str[0];
         tens.innerText = str[1];
         units.innerText = str[2];
+        // Ocultar ceros a la izquierda (siempre se muestra al menos una cifra)
+        hundreds.style.display = value >= 100 ? '' : 'none';
+        tens.style.display = value >= 10 ? '' : 'none';
     }
 
     function updateCountdown() {
@@ -138,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setDigits(secondsTens, secondsUnits, seconds);
 
         // Progress Bar Logic
-        const startDate = new Date('2025-11-06T00:00:00').getTime();
         const totalDuration = targetDate - startDate;
         const elapsed = now - startDate;
         
@@ -155,6 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
             progressText.innerText = `${percentage.toFixed(2)}%`;
         }
     }
+
+    initTimeZoneSelector();
 
     // Initial call
     updateCountdown();
